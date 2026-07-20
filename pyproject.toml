@@ -38,6 +38,10 @@ ignore = [
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
+# The package is meant to be run from a clone, not installed, so put the repo
+# root on sys.path. Without this, a bare `pytest` cannot import the package
+# (only `python -m pytest` would work, because that adds the CWD itself).
+pythonpath = ["."]
 addopts = "-q --strict-markers"
 asyncio_mode = "auto"
 filterwarnings = ["error::DeprecationWarning"]
